@@ -36,7 +36,7 @@ public:
     Plane();
 //平面情報を標準出力する
     void print(){
-        std::cout << m_pl_alpha << " "<<m_pl_beta <<"\n"<< m_pl_a <<" "<<m_pl_b<<" "<<m_pl_c<<" "<<m_pl_d<<"\n"<<m_pl_init[0][0]<<" "<<m_pl_init[0][1]<<" "<<m_pl_init[0][2]<<" #plane_data" <<"\n"<< nomal_vec[0] <<" "<<nomal_vec[1] <<" "<<nomal_vec[2] << std::endl ;        
+        std::cout << m_pl_alpha << " "<<m_pl_beta <<"\n"<< m_pl_a <<" "<<m_pl_b<<" "<<m_pl_c<<" "<<m_pl_d<<"\n"<<m_pl_init[0][0]<<" "<<m_pl_init[0][1]<<" "<<m_pl_init[0][2]<<"\n"<< nomal_vec[0] <<" "<<nomal_vec[1] <<" "<<nomal_vec[2] << " #plane_data" <<std::endl ;        
 };
 
 };
