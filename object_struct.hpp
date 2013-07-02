@@ -16,7 +16,7 @@ private:
     double m_pl_b;
     double m_pl_c;
     double m_pl_d;
-    static const double  m_pl_init[4][4] ; //初期の平面の頂点。静的メンバ
+    static const double  m_pl_init[3][3] ; //初期の平面の頂点。静的メンバ
 public:
     //alphaとbetaから平面の方程式のa, b, c, dを計算し、メンバ変数に格納する。    
     void CalcABCD();
