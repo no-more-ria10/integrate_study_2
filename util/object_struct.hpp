@@ -21,7 +21,7 @@ class Plane{
     friend double l_point_plane(Plane plane, double p[3]);
 //平面とボールのあたり判定。
     friend bool judge_hit(Ball ball, Plane plane);
-    friend void slope_fall(Ball ball, Plane plane);//坂道転がるやつ
+    friend void slope_fall(Ball* ball, Plane* plane);//坂道転がるやつ
 private:
     double m_pl_alpha; //z軸周りの回転角
     double m_pl_beta;//x軸周りの回転角
@@ -50,8 +50,8 @@ public:
 class Ball{
 //平面とボールのあたり判定。
     friend bool judge_hit(Ball ball, Plane plane);
-    friend void free_fall(Ball ball);//自由落下用
-    friend void slope_fall(Ball ball, Plane plane);//坂道転がるやつ
+    friend void free_fall(Ball* ball);//自由落下用
+    friend void slope_fall(Ball* ball, Plane* plane);//坂道転がるやつ
 private:
     double radius ;//半径。基本的に固定？
     double point[3]; //座標 
