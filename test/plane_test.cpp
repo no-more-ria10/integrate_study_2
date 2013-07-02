@@ -6,7 +6,7 @@
 int main(int argc, char** argv){
     double al, be;
     Plane plane;
-    double p[3] = { 100, 10 , 7 };
+    double p[3] = { 0, 0 ,0 };
     double p2; //l_point_plane テスト用
     if(argc != 3){
         std::cout << "error!!. num of argument is 3!!" <<std::endl;
