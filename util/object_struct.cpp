@@ -5,7 +5,7 @@
 /*平面の計算のメンバ変数。*/
 const double Plane::m_pl_init[3][3]  = { {INIT_X,0, INIT_Z}, {-1 * INIT_X, 0, INIT_Z}, { INIT_X, 0, -1 * INIT_Z} } ; //初期の平面の頂点。静的メンバ
 
-void Plane::CalcABCD_nomarl_v(){
+void Plane::CalcABCD_nomarl_theta(){
     double* p[3] ; //回転後の頂点の格納。
     double before[3][3]; //const変数のコピー用
     double l;
@@ -38,6 +38,9 @@ void Plane::CalcABCD_nomarl_v(){
     nomal_vec[1] =  m_pl_b /l; 
     nomal_vec[2] =  m_pl_c /l; 
     }
+
+    theta = acos( (m_pl_b > 0 ? m_pl_b : -1.0 * m_pl_b) / sqrt( m_pl_a*m_pl_a + m_pl_b*m_pl_b + m_pl_c*m_pl_c) ); 
+    
     return ;
 }
 
@@ -45,13 +48,13 @@ void Plane::CalcABCD_nomarl_v(){
 Plane::Plane() 
  {
         this->m_pl_alpha = m_pl_beta  = m_pl_a = m_pl_b = m_pl_c = m_pl_d =  0.0;
-        this->CalcABCD_nomarl_v();
+        this->CalcABCD_nomarl_theta();
  }
 
 void Plane::SetAlphaBeta ( double alpha2, double beta2){
     if(alpha2 != INF) this->m_pl_alpha = alpha2;
     if(alpha2 != INF) this->m_pl_beta = beta2;
-    CalcABCD_nomarl_v();
+    CalcABCD_nomarl_theta();
     return;
 }    
 
