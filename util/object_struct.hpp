@@ -1,5 +1,7 @@
 /*演習用の関数群。単位系はメートル、キログラム、秒のつもり*/
 
+#ifndef __OBJECT_STRUCT_H__
+#define __OBJECT_STRUCT_H__
 
 #include<iostream>
 #define INF 1000000.0f
@@ -32,3 +34,5 @@ public:
 };
 
 };
+
+#endif 

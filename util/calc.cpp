@@ -14,7 +14,9 @@ double*  rotate_3d_z_x(double p[3],double a, double b){
     n_p[0] = p[0] * cos(a) - p[1] * sin(a) * cos(b) + p[2] * sin(a) * sin(b);
     n_p[1] = p[0] * sin(a) + p[1] * cos(a) * cos(b) - p[2] * cos(a) * sin(b);
     n_p[2] = p[1] * sin(b) + p[2] * cos(b);
+#ifdef DEBUG_MODE
     std::cout << n_p[0] << " "<<n_p[1] << " "<<n_p[2] << std::endl;
+#endif
     return n_p;
        
 }
