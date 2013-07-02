@@ -25,10 +25,11 @@ private:
     double m_pl_b;
     double m_pl_c;
     double m_pl_d;
+    double nomal_vec[3]; //単位法線ベクトル;
     static const double  m_pl_init[3][3] ; //初期の平面の頂点。静的メンバ
 public:
-    //alphaとbetaから平面の方程式のa, b, c, dを計算し、メンバ変数に格納する。    
-    void CalcABCD();
+    //alphaとbetaから平面の方程式のa, b, c, d,単位法線ベクトルを計算し、メンバ変数に格納する。
+    void CalcABCD_nomarl_v();
     //角度をセットする。丸め込みをしてから書き込むこと。INF代入された場合は何もしない。
     void SetAlphaBeta(double alpha2, double beta2);
 //初期化関数。引数はとらない

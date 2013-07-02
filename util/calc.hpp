@@ -14,6 +14,8 @@ double l_point_plane ( Plane plane, double point[3]);
 
 bool judge_hit(Ball ball, Plane plane);
 
-    
+
+
+
 
 #endif 
