@@ -9,6 +9,8 @@
     
 //平面の情報のオブジェクト
 class Plane{
+    //点と平面の距離を求める関数
+    friend double l_point_plane(Plane plane, double p[3]);
 private:
     double m_pl_alpha; //z軸周りの回転角
     double m_pl_beta;//x軸周りの回転角
