@@ -5,12 +5,19 @@
 
 #include<iostream>
 #include<stdbool.h>
+#include<stdlib.h>
+
 #define INF 1000000.0f
 //初期平面の頂点座標のx,z方向長さの半分の値。
 #define INIT_X  200.0f
 #define INIT_Z  200.0f
 //初期半径　
 #define INIT_R 5.0f
+
+typedef enum{
+    Alpha = 0,
+    Beta 
+}angle_type_t;
 
 class Ball;
 
@@ -43,7 +50,45 @@ public:
     void print(){
         std::cout << m_pl_alpha << " "<<m_pl_beta <<"\n"<< m_pl_a <<" "<<m_pl_b<<" "<<m_pl_c<<" "<<m_pl_d<< " " <<m_pl_init[0][0]<<" "<<m_pl_init[0][1]<<" "<<m_pl_init[0][2]<<" "<< nomal_vec[0] <<" "<<nomal_vec[1] <<" "<<nomal_vec[2] << " " << theta << " #plane_data" <<std::endl ;        
 };
-
+//各値の取得用関数。
+    double GetAngle(angle_type_t x){
+        if( x < 0 || x > 1 ){
+            std::cout << "Plane::GetAngle error" << std::endl ;
+            exit(0);
+        }
+        if(x == Alpha)      return m_pl_alpha; //引数が０ならalphaの値。
+        if(x == Beta) return m_pl_beta; //逆
+    };
+    double GetNum(char c){
+        switch(c){
+        case 'a':
+            return m_pl_a;
+            break;
+        case 'b':
+            return m_pl_b;
+            break;
+        case 'c':
+            return m_pl_c;
+            break;
+        case 'd':
+            return m_pl_d;
+            break;
+        default:
+            std::cout << "Plane::GetNum error" << std::endl ;
+            exit(0);
+            break;
+        }
+    };
+    double GetNomal(int x){
+        if( x < 0 || x >2 ){
+            std::cout << "ball::GetPoint error" << std::endl ;
+            exit(0);
+        }
+        return nomal_vec[x];
+    };
+    double GetTheta(){
+        return theta;
+    };
 };
 
 //球のオブジェクト。座標、速度を持つ。
@@ -72,9 +117,26 @@ public:
         radius = n_r;
     } ;   
     void print(){
-        std::cout<< radius << "#ball_radius\n " << point[0] << " "<<point[1] << " "<<point[2] << "#ball_point "<< vel[0] << " " << vel[1] << " " << vel[2] << " #ball_vel " << std::endl;        
-   }
-
+        std::cout<< radius << "#ball_radius\n " << point[0] << " "<<point[1] << " "<<point[2] << " #ball_point\n "<< vel[0] << " " << vel[1] << " " << vel[2] << " #ball_vel " << std::endl;        
+    };
+    double GetPoint(int x){
+        if( x < 0 || x >2 ){
+            std::cout << "ball::GetPoint error" << std::endl ;
+            exit(0);
+        }
+        return point[x];
+    };
+    double GetVel(int x){
+        if( x < 0 || x >2 ){
+            std::cout << "ball::GetVel error" << std::endl ;
+            exit(0);
+        }
+        return vel[x];
+    };
+    double GetRadius(){
+        return radius;
+    };
+    
     Ball(){
         for(int i = 0; i < 3 ; i++){
             vel[i] = 0.0;

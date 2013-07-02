@@ -12,7 +12,7 @@ double* rotate_3d_z_x(double p[3],double a, double b);
 
 //３次元の点と平面の距離を測る。
 double l_point_plane ( Plane plane, double point[3]);
-
+//ヒット判定。ヒットならtrue
 bool judge_hit(Ball ball, Plane plane);
 
 

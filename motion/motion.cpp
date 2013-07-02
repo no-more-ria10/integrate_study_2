@@ -14,11 +14,18 @@
 static bool f_flag = false; //false: slope, true: free
 
 
+void act_motion(Ball* ball, Plane* plane){
+    if( judge_hit(*ball, *plane) ) slope_fall(ball, plane);
+    else free_fall(ball);
+}
+
 void free_fall(Ball* ball){
     double dv[3];
     double dp[3];
-    if( !f_flag ) f_flag = true;
-    
+    if( !f_flag ) {
+        f_flag = true;
+        std::cout<< " #flag change(false -> true)!!\n" <<std::endl;
+    }
     dv[0] = 0;
     dv[1] = - G * DT;
     dv[2] = 0;
@@ -40,9 +47,10 @@ void slope_fall(Ball* ball, Plane* plane){
     if( f_flag ){
         f_flag = false;
         ball->vel[1] = 0;
+        std::cout<< " #flag change(true -> false)!!\n" <<std::endl;
     }
     dv[0] = abs_dv * cos(plane->theta) * plane->nomal_vec[0] ;
-    dv[1] = abs_dv * sin(plane->theta) * sin(plane->theta) ;
+    dv[1] = - 1.0 *abs_dv * sin(plane->theta) * sin(plane->theta) ;
     dv[2] = abs_dv * cos(plane->theta) * plane->nomal_vec[2] ;
 
     ball->up_vel(dv);
@@ -54,3 +62,4 @@ void slope_fall(Ball* ball, Plane* plane){
     ball->up_point(dp);
 
 }
+

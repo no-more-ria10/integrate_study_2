@@ -1,5 +1,4 @@
 #include "object_struct.hpp"
-#include <stdlib.h>
 #include <math.h>
 #include <iostream>
 #include "motion.hpp"
@@ -27,7 +26,7 @@ int main(int argc, char** argv){
 
     for(int i = 0; i < ROOP_NUM; i++){
         //free_fall(&ball);
-        slope_fall(&ball, &plane);
+        act_motion(&ball, &plane);
         ball.print();
     }
 }
