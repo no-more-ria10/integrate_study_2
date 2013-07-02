@@ -35,7 +35,7 @@ public:
     Plane();
 //平面情報を標準出力する
     void print(){
-        std::cout << m_pl_alpha << " "<<m_pl_beta <<"\n"<< m_pl_a <<" "<<m_pl_b<<" "<<m_pl_c<<" "<<m_pl_d<<"\n"<<m_pl_init[0][0]<<" "<<m_pl_init[0][1]<<" "<<m_pl_init[0][2]<<"#plane_data" << std::endl ;        
+        std::cout << m_pl_alpha << " "<<m_pl_beta <<"\n"<< m_pl_a <<" "<<m_pl_b<<" "<<m_pl_c<<" "<<m_pl_d<<"\n"<<m_pl_init[0][0]<<" "<<m_pl_init[0][1]<<" "<<m_pl_init[0][2]<<" #plane_data" << std::endl ;        
 };
 
 };
@@ -43,7 +43,7 @@ public:
 //球のオブジェクト。座標、速度を持つ。
 class Ball{
 //平面とボールのあたり判定。
-//    friend bool judge_hit(Ball ball, Plane plane);
+    friend bool judge_hit(Ball ball, Plane plane);
 private:
     double radius ;//半径。基本的に固定？
     double point[3]; //座標 
@@ -63,7 +63,7 @@ public:
         radius = n_r;
     } ;   
     void print(){
-        std::cout<< radius << " " << point[0] << " "<<point[1] << " "<<point[2] << " "<< vel[0] << " " << vel[1] << " " << vel[2] << "#ball_data " << std::endl;        
+        std::cout<< radius << " " << point[0] << " "<<point[1] << " "<<point[2] << " "<< vel[0] << " " << vel[1] << " " << vel[2] << " #ball_data " << std::endl;        
    }
     Ball(){
         for(int i = 0; i < 3 ; i++){

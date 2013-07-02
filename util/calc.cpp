@@ -27,3 +27,10 @@ double l_point_plane( Plane p, double a[3]){
     s = sqrt( p.m_pl_a * p.m_pl_a + p.m_pl_b * p.m_pl_b + p.m_pl_c * p.m_pl_c);
     return (u) > ( -1.0 * u) ? u / s : -1.0 * u / s; 
 }
+
+bool judge_hit(Ball ball, Plane plane){
+    if( l_point_plane( plane, ball.point) <= ball.radius )
+        return true;
+    else if( l_point_plane( plane, ball.point) > ball.radius )
+        return false;
+}
