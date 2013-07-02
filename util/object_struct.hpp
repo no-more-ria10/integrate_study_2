@@ -17,7 +17,7 @@ class Plane{
     //点と平面の距離を求める関数
     friend double l_point_plane(Plane plane, double p[3]);
 //平面とボールのあたり判定。
-//    friend bool judge_hit(Ball ball, Plane plane);
+    friend bool judge_hit(Ball ball, Plane plane);
 private:
     double m_pl_alpha; //z軸周りの回転角
     double m_pl_beta;//x軸周りの回転角
@@ -28,7 +28,7 @@ private:
     double nomal_vec[3]; //単位法線ベクトル;
     static const double  m_pl_init[3][3] ; //初期の平面の頂点。静的メンバ
 public:
-    //alphaとbetaから平面の方程式のa, b, c, d,単位法線ベクトルを計算し、メンバ変数に格納する。
+    //alphaとbetaから平面の方程式のa, b, c, d,単位法線ベクトルを計算し、メンバ変数に格納する。法線ベクトルの計算怪しい感じがする。
     void CalcABCD_nomarl_v();
     //角度をセットする。丸め込みをしてから書き込むこと。INF代入された場合は何もしない。
     void SetAlphaBeta(double alpha2, double beta2);
