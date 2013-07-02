@@ -2,8 +2,7 @@
 #include<iostream>
 #include"object_struct.hpp"
 /*平面の計算のメンバ変数。*/
-const double Plane::m_pl_init[3][3]  = { {INIT_X,0, INIT_Z}, {-1 * INIT_X, 0, INIT_Z}, { INIT_X, 0, -1 * INIT_Z} }; //初期の平面の頂点。静的メンバ
-
+const double Plane::m_pl_init[4][4]  = { {INIT_X,0, INIT_Z}, {-1 * INIT_X, 0, INIT_Z}, { INIT_X, 0, -1 * INIT_Z}, {-1 * INIT_X, 0, -1*INIT_Z}}; //初期の平面の頂点。静的メンバ
 
 void Plane::CalcABCD(){
     int p[3][3]; //回転後の頂点の格納。
@@ -31,5 +30,6 @@ Plane::Plane()
 void Plane::SetAlphaBeta ( double alpha2, double beta2){
     if(alpha2 != INF) this->m_pl_alpha = alpha2;
     if(alpha2 != INF) this->m_pl_beta = beta2;
+    CalcABCD();
     return;
 }    
