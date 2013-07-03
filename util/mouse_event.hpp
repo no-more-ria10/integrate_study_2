@@ -6,11 +6,11 @@
 #define __MOUSE_EVENT_H__
 
 //移動量の計算。
-int* get_rotate();
+double* get_rotate();
 
-void
+void motion_func(int x, int y);
 
-
+void move_step(int button, int state, int x, int y);
 
 
 

@@ -6,7 +6,6 @@
 #include"mouse_event.hpp"
 
 //openglのライブラリ
-#include<GL/glew.h>
 #include<GL/glut.h>
 #include<GL/gl.h>
 #include<GL/glui.h>
@@ -32,7 +31,7 @@ void init(void)
     glEnable(GL_COLOR_MATERIAL);
     glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
     glLightfv(GL_LIGHT0, GL_SPECULAR,light0_specular );
-    std::cout << "#INIT_DOEN\n" << std::endl;
+//    std::cout << "#INIT_DOEN\n" << std::endl;
     plane.SetAlphaBeta(p_alpha, p_beta);
 }
 
@@ -42,11 +41,12 @@ void display(void){
     glColor3f(0.6, 0.5, 0.5);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    plane.SetAlphaBeta(p_alpha, p_beta);
     
     idle();
     glFlush();    
-    std::cout << "#DISPLAY_DOEN\n" << std::endl;
-    ball.print();
+//    std::cout << "#DISPLAY_DOEN\n" << std::endl;
+//    ball.print();
 
 }
 //ボールの描画
@@ -58,7 +58,7 @@ void IdleBallMake(){
     glColor3f(0.0 , 1.0, 0.0);
 
     glutSolidSphere( ball.GetRadius(), 100.0, 100.0);
-    std::cout << "#BALL_MAKE_DOEN\n" << std::endl;
+//    std::cout << "#BALL_MAKE_DOEN\n" << std::endl;
 
 }
 //平面の描画
@@ -74,12 +74,12 @@ void IdlePlaneMake(){
         glColor3f(1.0 , 0.0, 0.0);
         for(int i = 0; i<4; i++){
             glVertex3f( a[i][0], a[i][1], a[i][2]);
-            std::cout <<a[i][0] << " " <<a[i][1] << " " <<a[i][2] << "#頂点\n "  << std::endl;
+//            std::cout <<a[i][0] << " " <<a[i][1] << " " <<a[i][2] << "#頂点\n "  << std::endl;
 
         }
     }
     glEnd();
-        std::cout << "#PLANE_MAKE_DOEN\n" << std::endl;
+//        std::cout << "#PLANE_MAKE_DOEN\n" << std::endl;
 }
 //普通のリシェイプ
 void reshape(int w, int h)
@@ -89,19 +89,21 @@ void reshape(int w, int h)
     glLoadIdentity();
     glFrustum( -0.5, 0.5,-0.5 ,0.5, 1, 1000);
     glMatrixMode(GL_MODELVIEW);
-    std::cout << "#RESHAPE_DOEN\n" << std::endl;
+//    std::cout << "#RESHAPE_DOEN\n" << std::endl;
 }
-描画関数を２つ実行する。
+//描画関数を２つ実行する。
 void idle(){
     IdlePlaneMake();
     IdleBallMake();
 }
 //図形の回転を行う関数。util/mouth_event.hppを参照。
-void drag_rotate(int button, int state, int x, int y){
+void drag_rotate(int x, int y){
+    motion_func(x, y);
     double a[2]; //ドラック角度を格納。
     a = get_rotate();
-    p_alpha = a[0];
-    p_beta = a[1];
+    p_alpha += a[0];
+    p_beta += a[1];
+    std::cout << p_alpha << " " << p_beta << " #alpha_beta " << std::endl;
     delete a;
 }
 
@@ -118,7 +120,7 @@ int main(int argc, char** argv){
     glutMouseFunc(move_step);
     glutMotionFunc(drag_rotate);
     
-    std::cout << "#GO_MAIN_LOOP\n" << std::endl;
+//    std::cout << "#GO_MAIN_LOOP\n" << std::endl;
 
     glutMainLoop();
 
