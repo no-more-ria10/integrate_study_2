@@ -3,7 +3,7 @@
 #include"object_struct.hpp"
 #include"calc.hpp"
 /*平面の計算のメンバ変数。*/
-const double Plane::m_pl_init[3][3]  = { {INIT_X,0, INIT_Z}, {-1 * INIT_X, 0, INIT_Z}, { INIT_X, 0, -1 * INIT_Z} } ; //初期の平面の頂点。静的メンバ
+const double Plane::m_pl_init[4][3]  = { {INIT_X,0, INIT_Z}, {-1 * INIT_X, 0, INIT_Z}, {-1.0 * INIT_X, 0, -1 * INIT_Z},{ INIT_X, 0, -1 * INIT_Z}  } ; //初期の平面の頂点。静的メンバ
 
 void Plane::CalcABCD_nomarl_theta(){
     double* p[3] ; //回転後の頂点の格納。

@@ -9,8 +9,8 @@
 
 #define INF 1000000.0f
 //初期平面の頂点座標のx,z方向長さの半分の値。
-#define INIT_X  200.0f
-#define INIT_Z  200.0f
+#define INIT_X  50.0f
+#define INIT_Z  50.0f
 //初期半径　
 #define INIT_R 5.0f
 
@@ -38,7 +38,6 @@ private:
     double m_pl_d;
     double nomal_vec[3]; //単位法線ベクトル;
     double theta ;//zx平面とこの平面のなす角。
-    static const double  m_pl_init[3][3] ; //初期の平面の頂点。静的メンバ
 public:
     //alphaとbetaから平面の方程式のa, b, c, d,単位法線ベクトルを計算し、メンバ変数に格納する。法線ベクトルの計算怪しい感じがする。
     void CalcABCD_nomarl_theta();
@@ -51,6 +50,7 @@ public:
         std::cout << m_pl_alpha << " "<<m_pl_beta <<"\n"<< m_pl_a <<" "<<m_pl_b<<" "<<m_pl_c<<" "<<m_pl_d<< " " <<m_pl_init[0][0]<<" "<<m_pl_init[0][1]<<" "<<m_pl_init[0][2]<<" "<< nomal_vec[0] <<" "<<nomal_vec[1] <<" "<<nomal_vec[2] << " " << theta << " #plane_data" <<std::endl ;        
 };
 //各値の取得用関数。
+    static const double  m_pl_init[4][3] ; //初期の平面の頂点。静的メンバ
     double GetAngle(angle_type_t x){
         if( x < 0 || x > 1 ){
             std::cout << "Plane::GetAngle error" << std::endl ;

@@ -8,7 +8,7 @@
 #include"calc.hpp"
 #include"object_struct.hpp"
 //z軸、x軸座標回転
-double*  rotate_3d_z_x(double p[3],double a, double b){
+double*  rotate_3d_z_x(const double p[3],double a, double b){
     double *n_p;
     n_p = new double[3];
 
