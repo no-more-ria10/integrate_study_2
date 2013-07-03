@@ -3,6 +3,7 @@
 #include"calc.hpp"
 #include"motion.hpp"
 #include"time_set.hpp"
+#include"mouse_event.hpp"
 
 //openglのライブラリ
 #include<GL/glew.h>
@@ -51,7 +52,7 @@ void display(void){
 //ボールの描画
 void IdleBallMake(){
     glLoadIdentity();
-    gluLookAt(150 , 30.0, 0.0, 0.0, 0.0, 0.0,  0.0, 1.0, 0.0); //画面の上向きはy軸の上。
+    gluLookAt(150.0 , 30.0,150.0, 0.0, 0.0, 0.0,  0.0, 1.0, 0.0); //画面の上向きはy軸の上。
     act_motion(&ball, &plane);
     glTranslatef(ball.GetPoint(0),ball.GetPoint(1),ball.GetPoint(2) );
     glColor3f(0.0 , 1.0, 0.0);
@@ -64,7 +65,7 @@ void IdleBallMake(){
 void IdlePlaneMake(){
     double* a[4];
     glLoadIdentity();
-    gluLookAt(150 , 30.0, 0.0, 0.0, 0.0, 0.0,  0.0, 1.0, 0.0); //画面の上向きはy軸の上。
+    gluLookAt(150 ,30.0,150.0, 0.0, 0.0, 0.0,  0.0, 1.0, 0.0); //画面の上向きはy軸の上。
     for(int i = 0; i<4; i++){
         a[i] = rotate_3d_z_x( plane.m_pl_init[i], plane.GetAngle(Alpha),  plane.GetAngle(Beta));
     }
@@ -80,7 +81,7 @@ void IdlePlaneMake(){
     glEnd();
         std::cout << "#PLANE_MAKE_DOEN\n" << std::endl;
 }
-
+//普通のリシェイプ
 void reshape(int w, int h)
 {
     glViewport(0 , 0, (GLsizei) w, (GLsizei) h);
@@ -90,10 +91,18 @@ void reshape(int w, int h)
     glMatrixMode(GL_MODELVIEW);
     std::cout << "#RESHAPE_DOEN\n" << std::endl;
 }
-//アイドルループ
+描画関数を２つ実行する。
 void idle(){
     IdlePlaneMake();
     IdleBallMake();
+}
+//図形の回転を行う関数。util/mouth_event.hppを参照。
+void drag_rotate(int button, int state, int x, int y){
+    double a[2]; //ドラック角度を格納。
+    a = get_rotate();
+    p_alpha = a[0];
+    p_beta = a[1];
+    delete a;
 }
 
 int main(int argc, char** argv){
@@ -104,10 +113,11 @@ int main(int argc, char** argv){
     glutCreateWindow(argv[0]);
     init();
     
-//    glutDisplayFunc(display);
     glutReshapeFunc(reshape);
-//    glutIdleFunc(idle);
- glutIdleFunc(display);
+    glutIdleFunc(display);
+    glutMouseFunc(move_step);
+    glutMotionFunc(drag_rotate);
+    
     std::cout << "#GO_MAIN_LOOP\n" << std::endl;
 
     glutMainLoop();
