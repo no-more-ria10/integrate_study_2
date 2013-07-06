@@ -6,6 +6,7 @@
 #include<iostream>
 #include<math.h>
 #include<stdbool.h>
+#include<stdlib.h>
 #include"object_struct.hpp"
 #include"calc.hpp"
 #include"motion.hpp"
@@ -15,8 +16,13 @@ static bool f_flag = false; //false: slope, true: free
 
 
 void act_motion(Ball* ball, Plane* plane){
-    if( judge_hit(*ball, *plane) ) slope_fall(ball, plane);
-    else free_fall(ball);
+    if( judge_hit(*ball, *plane)  && check_on_plane(*ball, *plane )){
+        put_ball_on_plane(ball, plane);
+        slope_fall(ball, plane);
+    }  else if( ball->GetPoint(1) < -100.0 ){
+        std::cout << "Game Over!!" << std::endl;
+        exit(0);        
+    }else   free_fall(ball);
 }
 
 void free_fall(Ball* ball){

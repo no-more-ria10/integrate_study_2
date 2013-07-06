@@ -12,7 +12,7 @@
 #define INIT_X  50.0f
 #define INIT_Z  50.0f
 //初期半径　
-#define INIT_R 5.0f
+#define INIT_R 10.0f
 
 typedef enum{
     Alpha = 0,
@@ -29,6 +29,7 @@ class Plane{
 //平面とボールのあたり判定。
     friend bool judge_hit(Ball ball, Plane plane);
     friend void slope_fall(Ball* ball, Plane* plane);//坂道転がるやつ
+friend bool check_on_plane(Ball ball, Plane plane);
 private:
     double m_pl_alpha; //z軸周りの回転角
     double m_pl_beta;//x軸周りの回転角
@@ -59,18 +60,18 @@ public:
         if(x == Alpha)      return m_pl_alpha; //引数が０ならalphaの値。
         if(x == Beta) return m_pl_beta; //逆
     };
-    double GetNum(char c){
-        switch(c){
-        case 'a':
+    double GetNum(int x){
+        switch(x){
+        case 0:
             return m_pl_a;
             break;
-        case 'b':
+        case 1:
             return m_pl_b;
             break;
-        case 'c':
+        case 2:
             return m_pl_c;
             break;
-        case 'd':
+        case 3:
             return m_pl_d;
             break;
         default:
@@ -113,6 +114,13 @@ public:
             vel[i] += v[i];
         }
     };
+    //そのまま変更する。
+    double renew_point(double p[3]){
+        for(int i = 0; i<3 ; i++){
+            point[i] = p[i];
+        }
+    }
+        
     double renew_radius(double n_r){
         radius = n_r;
     } ;   
@@ -141,8 +149,9 @@ public:
         for(int i = 0; i < 3 ; i++){
             vel[i] = 0.0;
             point[i] = 0.0;
-            radius = INIT_R;
         }
+        radius = INIT_R;
+        point[1] = 100;
     };
 
 };

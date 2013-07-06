@@ -31,7 +31,7 @@ void Plane::CalcABCD_nomarl_theta(){
         }
     }else if( m_pl_b < 0 ){
     nomal_vec[0] = -1.0 * m_pl_a /l; 
-    nomal_vec[1] = -1.0 * m_pl_b /l; 
+    nomal_vec[1] = -1.0 * m_pl_b /l;
     nomal_vec[2] = -1.0 * m_pl_c /l; 
     }else{
     nomal_vec[0] =  m_pl_a /l; 

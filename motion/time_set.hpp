@@ -5,7 +5,7 @@
 #ifndef __TIME_SET_HPP_
 #define __TIME_SET_HPP_
 
-#define DT 0.001f //時間間隔はこれに固定。
+#define DT 0.02uf //時間間隔はこれに固定。
 
 //double t = 0;
 //double old_t = 0;

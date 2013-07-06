@@ -14,7 +14,10 @@ double* rotate_3d_z_x(const double p[3],double a, double b);
 double l_point_plane ( Plane plane, double point[3]);
 //ヒット判定。ヒットならtrue
 bool judge_hit(Ball ball, Plane plane);
-
+//中心修正用。平面にちょうどのるような位置に球を移動させる。
+void put_ball_on_plane(Ball* ball, Plane* plane);
+//平面領域からはみ出ていないかチェック
+bool check_on_plane(Ball ball, Plane plane);
 
 
 
